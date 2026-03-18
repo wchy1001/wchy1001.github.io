@@ -1,0 +1,8 @@
+site_name: wchy1001's blogs
+
+theme:
+  name: material
+
+nav:
+  - 首页: README.md
+  - kserve系列: kserve/README.md
