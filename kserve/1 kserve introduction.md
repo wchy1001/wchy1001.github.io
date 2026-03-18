@@ -1,4 +1,9 @@
-# 高性能推理框架-Kserve 介绍
+---
+layout: default
+title: kserve 介绍
+---
+
+## 高性能推理框架-Kserve 介绍
 
 Kserve是一个高性能的AI推理框架，看起来是对论文mooncake的工程实践。在新的版本中（2025年下半年开始），Kserve 开始支持 LLMInferenceService CR，相对以往的InferenceService 添加了对生成式模型的高级调度功能，其中包括：PD分离，智能路由等高级功能，因此本文主要介绍的是LLMISvc的资源工作原理，在查看本文之前，去阅读一下[kserve](https://kserve.github.io/website/docs/model-serving/generative-inference/llmisvc/llmisvc-overview)的官方网站将非常有帮助。
 

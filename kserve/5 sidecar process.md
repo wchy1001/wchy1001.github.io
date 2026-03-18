@@ -1,4 +1,9 @@
-# llm-d sidecar
+---
+layout: default
+title: sidecar workflow
+---
+
+## llm-d sidecar
 
 sidecar是部署在decode节点上的，prefill节点里不需要部署，如果需要prefill的时候，sidecar会把请求转发到prefill上
 
