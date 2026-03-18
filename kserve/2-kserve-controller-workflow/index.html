@@ -1,0 +1,762 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>kserve llmisvc controller - wchy1001's blogs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kserve" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="wchy1001&#39;s blogs" class="md-header__button md-logo" aria-label="wchy1001's blogs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            wchy1001's blogs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              kserve llmisvc controller
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="wchy1001&#39;s blogs" class="md-nav__button md-logo" aria-label="wchy1001's blogs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    wchy1001's blogs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kserve系列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kserve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kserve 资源介绍
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建测试示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kserverllminferenceservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kserver处理LLMInferenceService
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kserver处理LLMInferenceService">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        合并模版文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        workload的处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        路由处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建的结果
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>kserve llmisvc controller</h1>
+
+<h2 id="kserve">kserve 资源介绍</h2>
+<p>本章通过自己手动创建llmisvc 来查看代码是如何运行的</p>
+<h2 id="_1">创建测试示例</h2>
+<p>参考官网的demo，首先创建如下的CR：</p>
+<pre><code class="language-yaml">apiVersion: serving.kserve.io/v1alpha1
+kind: LLMInferenceService
+metadata:
+  name: small-llm-pd-single-gpu
+  namespace: default
+spec:
+
+  model:
+    uri: pvc://nfs-pvc/hf/8b_instruction_tuned 
+    name: 8b_instruction_tuned
+
+  # Decode 工作负载（主服务）
+  replicas: 2
+  template:
+    containers:
+      - name: main
+        resources:
+          limits:
+            nvidia.com/gpu: &quot;1&quot;
+            cpu: &quot;8&quot;
+            memory: 32Gi
+
+  # Prefill 工作负载（同样也在单卡上跑，主要为了架构上 PD 分离）
+  prefill:
+    replicas: 2
+    template:
+      containers:
+        - name: main
+          resources:
+            limits:
+              nvidia.com/gpu: &quot;1&quot;
+              cpu: &quot;8&quot;
+              memory: 32Gi
+
+  # 路由配置：使用默认网关和 HTTPRoute（空对象即可让 KServe 自动生成）[web:1]
+  router:
+    gateway: {}
+    route: {}
+    scheduler: {}
+</code></pre>
+<h2 id="kserverllminferenceservice">Kserver处理LLMInferenceService</h2>
+<p>在controller中的reconcile方法中，主要完成如下功能</p>
+<pre><code class="language-go">func (r *LLMISVCReconciler) reconcile(ctx context.Context, llmSvc *v1alpha1.LLMInferenceService) error {
+    logger := log.FromContext(ctx).WithName(&quot;reconcile&quot;)
+    ctx = log.IntoContext(ctx, logger)
+
+    // Load global configuration from KServe configmap
+    // TODO(ctrl): add watch on CfgMap with predicate and cache tuning to trigger reconcile when it changes
+    config, configErr := LoadConfig(ctx, r.Clientset)
+    if configErr != nil {
+        return fmt.Errorf(&quot;failed to load ingress config: %w&quot;, configErr)
+    }
+
+    // Combine base configurations with service-specific overrides
+    // This includes default configs based on deployment pattern (single node, multi-node, etc.)
+    baseCfg, err := r.combineBaseRefsConfig(ctx, llmSvc, config)
+    if err != nil {
+        llmSvc.MarkPresetsCombinedNotReady(&quot;CombineBaseError&quot;, err.Error())
+        return fmt.Errorf(&quot;failed to combine base-configurations: %w&quot;, err)
+    }
+    llmSvc.MarkPresetsCombinedReady()
+
+    logger.V(2).Info(&quot;Reconciling with combined base configurations&quot;, &quot;combined.spec&quot;, baseCfg.Spec, &quot;original.spec&quot;, llmSvc.Spec)
+    // Replace the spec with the merged configuration for reconciliation
+    // We are only writing to status, so we can safely use the original object.
+    llmSvc.Spec = baseCfg.Spec
+
+    if err := r.reconcileWorkload(ctx, llmSvc, config); err != nil {
+        return fmt.Errorf(&quot;failed to reconcile workload: %w&quot;, err)
+    }
+
+    if err := r.reconcileRouter(ctx, llmSvc); err != nil {
+        return fmt.Errorf(&quot;failed to reconcile networking: %w&quot;, err)
+    }
+
+    return nil
+}
+</code></pre>
+<p>主要做了如下几件事：</p>
+<ol>
+<li>合并模板文件，如果在LLMisvc 中引用了其他的配置文件，那么会在这里统一合并,如果没有，那么合并默认的配置文件模版。
+2.reconcile workload： 处理workload，workload主要分为lws（用于多机模型）和deployment（用于单机模型）
+3.reconcileRouter：处理router</li>
+</ol>
+<h3 id="_2">合并模版文件</h3>
+<p>LLMinferencesvc和其他的资源一样，需要合并配模板置选项，配置资源'llminferenceserviceconfigs.serving.kserve.io'，安装完kserver会自动生成默认的配置文件，内容如下：</p>
+<pre><code class="language-bash">root@worker-1:~# kubectl  -n kserve get llminferenceserviceconfigs.serving.kserve.io
+NAME                                             AGE
+kserve-config-llm-decode-template                95d
+kserve-config-llm-decode-worker-data-parallel    95d
+kserve-config-llm-prefill-template               95d
+kserve-config-llm-prefill-worker-data-parallel   95d
+kserve-config-llm-router-route                   95d
+kserve-config-llm-scheduler                      95d
+kserve-config-llm-template                       95d
+kserve-config-llm-worker-data-parallel           95d
+</code></pre>
+<p>合并的规则如下：</p>
+<pre><code class="language-go">    if resolvedSpec.Prefill != nil { // P/D
+        // Prefill
+        switch {
+        case resolvedSpec.Prefill.Worker == nil:
+            // single-node prefill
+            refs = append(refs, corev1.LocalObjectReference{Name: configPrefillTemplateName})
+        case resolvedSpec.Prefill.Worker != nil &amp;&amp; resolvedSpec.Prefill.Parallelism.IsDataParallel():
+            // multi-node Data Parallel prefill
+            refs = append(refs, corev1.LocalObjectReference{Name: configPrefillWorkerDataParallelName})
+        case resolvedSpec.Prefill.Worker != nil &amp;&amp; resolvedSpec.Prefill.Parallelism.IsPipelineParallel():
+            // multi-node Pipeline Parallel prefill
+            refs = append(refs, corev1.LocalObjectReference{Name: configPrefillWorkerPipelineParallelName})
+        }
+        // Decode
+        switch {
+        case resolvedSpec.Worker == nil:
+            // single-node decode
+            refs = append(refs, corev1.LocalObjectReference{Name: configDecodeTemplateName})
+        case resolvedSpec.Worker != nil &amp;&amp; resolvedSpec.Parallelism.IsDataParallel():
+            // multi-node Data Parallel decode
+            refs = append(refs, corev1.LocalObjectReference{Name: configDecodeWorkerDataParallelName})
+        case resolvedSpec.Worker != nil &amp;&amp; resolvedSpec.Parallelism.IsPipelineParallel():
+            // multi-node Pipeline Parallel decode
+            refs = append(refs, corev1.LocalObjectReference{Name: configDecodeWorkerPipelineParallelName})
+        }
+    } else { // Non P/D
+        switch {
+        case resolvedSpec.Worker == nil:
+            // single-node
+            refs = append(refs, corev1.LocalObjectReference{Name: configTemplateName})
+        case resolvedSpec.Worker != nil &amp;&amp; resolvedSpec.Parallelism.IsDataParallel():
+            // multi-node Data Parallel
+            refs = append(refs, corev1.LocalObjectReference{Name: configWorkerDataParallelName})
+        case resolvedSpec.Worker != nil &amp;&amp; resolvedSpec.Parallelism.IsPipelineParallel():
+            // multi-node Pipeline Parallel
+            refs = append(refs, corev1.LocalObjectReference{Name: configWorkerPipelineParallelName})
+        }
+    }
+</code></pre>
+<p>先判断是不是 PD分离（通过判断prefill是否指定），如果是，然后判断prefill的worker，如果没有，就用 <code>kserve-config-llm-prefill-template</code> 合并，如过prefill下面worker设置了，在看是DP还是PP架构，然后合并对应的配置文件，其他合并规则，可以看代码的解释。最后如果有手动指定其他的config reference，则继续合并,然后还需要合并router和scheduler等相关信息。如果需要自定义某些配置，可以修改模板里面的配置，或者新建模板然后在llmisvc中引入即可</p>
+<h3 id="workload">workload的处理</h3>
+<p>reconcile workload 主要工作如下：</p>
+<pre><code class="language-go">    // Handle multi-node deployments using LeaderWorkerSets
+    if err := r.reconcileMultiNodeWorkload(ctx, llmSvc, config); err != nil {
+        llmSvc.MarkWorkerWorkloadNotReady(&quot;ReconcileMultiNodeWorkloadError&quot;, err.Error())
+        return fmt.Errorf(&quot;failed to reconcile multi node workload: %w&quot;, err)
+    }
+
+    // Handle single-node deployments using standard Deployments
+    if err := r.reconcileSingleNodeWorkload(ctx, llmSvc, config); err != nil {
+        llmSvc.MarkMainWorkloadNotReady(&quot;ReconcileSingleNodeWorkloadError&quot;, err.Error())
+        return fmt.Errorf(&quot;failed to reconcile single node workload: %w&quot;, err)
+    }
+
+    // Create Service to expose workload pods
+    if err := r.reconcileWorkloadService(ctx, llmSvc); err != nil {
+        llmSvc.MarkMainWorkloadNotReady(&quot;ReconcileWorkloadServiceError&quot;, err.Error())
+        return fmt.Errorf(&quot;failed to reconcile workload service: %w&quot;, err)
+    }
+</code></pre>
+<p>不管如何情况，都会调和各种类型的workload，防止变更LLMisvc的时候，修改了拓扑结构（比如从multinode 改成单节点），
+mutinode适合一些模型比较大的情况，比如deepseek-r1 这类 在单节点上没有办法部署完整的模型，使用LWS（leaderworkSet）来部署, reconcileMultiNodeWorkload 主要完成如下几个工作：</p>
+<p>1.处理llm worker节点的ServiceAccount
+2.处理llm-prefill节点的ServiceAccount（不一定有）
+3.创建LLm worker节点的workload
+4.创建prefill节点的workload</p>
+<p>其中创建llm worker 的workload和prefill为主要工作流程：
+<code>spec.worker</code>为空的时候，会删除workload, 换言之，只有当<code>llmisvc.spec.worker</code>不为空的时候，触发multinode LWS的创建：
+创建worker节点的时候，需要查看prefill是否设置，如果设置了就是PD分离架构，否则就是普通的单实例架构，接下来创建leaderworkerset，其中设置 tag 如： <code>"llm-d.ai/role"</code> 为 decode 还是 both，如果prefil没有设置就是both，设置了就是role节点，后续会设置prefill节点，leaderworkerset 会去合并 llmsvc下面的template内容，自动复制到lws中，之后 挂载 模型，然后设置routing sidecar， routing sidecar用来后续分发流量到 prefill节点，还是 decode节点，如果有routing sidecar 那么则设置pod的环境变量<code>INFERENCE_POOL_NAME</code>, decode节点的参数设置来源为：</p>
+<pre><code class="language-bash">kubectl get llminferenceserviceconfigs.serving.kserve.io -n kserve kserve-config-llm-decode-template  -o yaml
+apiVersion: serving.kserve.io/v1alpha1
+kind: LLMInferenceServiceConfig
+metadata:
+......
+  name: kserve-config-llm-decode-template
+  namespace: kserve
+spec:
+  template:
+    containers:
+    - args:
+      - --served-model-name
+      - '{{ .Spec.Model.Name }}'
+      - --port
+      - &quot;8001&quot;
+      - --disable-log-requests
+      command:
+      - vllm
+      - serve
+      - /mnt/models
+      env:
+......
+    initContainers:
+    - args:
+      - --port=8000
+      - --vllm-port=8001
+      - --connector=nixlv2
+      - --secure-proxy=false
+      env:
+      - name: INFERENCE_POOL_NAMESPACE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
+      image: ghcr.io/llm-d/llm-d-routing-sidecar:v0.3.0
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 3
+        initialDelaySeconds: 10
+        periodSeconds: 10
+        tcpSocket:
+          port: 8000
+        timeoutSeconds: 10
+      name: llm-d-routing-sidecar
+  .......
+</code></pre>
+<p>其中明确设置了 llm-d-routing-sidecar 作为sidecar容器，因此，在创建worker的时候，内容如上，注意 sidecar容器仅仅在decode中使用，并不会在prefill节点，后面流量会根据k-v cache 或者 负载，优先发送到decode节点上，由decode节点，决定是否需要转发到prefill节点，以及如何转发到prefill节点。至此decode节点设置完成。</p>
+<p>prefill节点： 当spec.prefill设置之后，触发prefill的lws创建：创建prefill 的lws基本和decode大差不差，区别在于引用了不同的 llminferenceserviceconfigs.serving.kserve.io 对象，以及缺少了sidecar等相关配置 内容如下:</p>
+<pre><code class="language-yaml">.......
+spec:
+  prefill:
+    template:
+      containers:
+      - args:
+        - --served-model-name
+        - '{{ .Spec.Model.Name }}'
+        - --port
+        - &quot;8000&quot;
+        - --disable-log-requests
+        command:
+        - vllm
+        - serve
+        - /mnt/models
+        env:
+        - name: HOME
+          value: /home
+        - name: VLLM_LOGGING_LEVEL
+          value: INFO
+        - name: HF_HUB_CACHE
+          value: /models
+        image: ghcr.io/llm-d/llm-d-dev:v0.2.2
+        imagePullPolicy: IfNotPresent
+        name: main
+.......
+</code></pre>
+<p>之后处理单节点的情况，其实单节点和multinode的流程大致相似，只不过把LWS的资源对象，替换成deployment，其他大致相同，流程为：
+判断是否单节点（根据llmsvc.spec.worker是否设置），如果设置，则删除当前的deployment，说明已经被上一步的multinode创建了，否则创建deployment, deployment 根据 kserve-config-llm-template 来生成deployment资源，设置role为decode还是prefill，创建deployment，处理serviceAccount  处理template中的合并内容，然后是否添加sidecar，挂载 model位置</p>
+<p>单节点和多节点，唯一的区别在于使用的lws还是deployment，在PD分离的场景中，几乎是一样的配置和流程。</p>
+<h3 id="_3">路由处理</h3>
+<p>处理路由 如下：
+1.创建scheduler，包括：</p>
+<ul>
+<li>创建scheduler service account</li>
+<li>创建inference model</li>
+<li>创建scheduler deployment</li>
+<li>创建scheduler service</li>
+<li>创建inference pool</li>
+</ul>
+<p>2.创建http route</p>
+<ul>
+<li>设置http route 把api 请求路由到 inference pool 上面</li>
+</ul>
+<p>至此，kserve的工作结束，至于流量是如何路由的，以及epp如何pick的，则属于llm-d的领域，下文将会分析</p>
+<h2 id="_4">创建的结果</h2>
+<pre><code class="language-bash">root@worker-1:~/wchy/kubeflow-workspaces# kubectl  get llminferenceservice
+NAME                      URL   READY   REASON   AGE
+small-llm-pd-single-gpu         True             72d
+</code></pre>
+<p>worker &amp; prefill  deployment，其中两个decode节点，2个prefill节点，1个 scheduler节点</p>
+<pre><code class="language-bash">root@worker-1:~/wchy/kubeflow-workspaces# kubectl  get deployments.apps
+NAME                                              READY   UP-TO-DATE   AVAILABLE   AGE
+small-llm-pd-single-gpu-kserve                    2/2     2            2           72d
+small-llm-pd-single-gpu-kserve-prefill            2/2     2            2           72d
+small-llm-pd-single-gpu-kserve-router-scheduler   1/1     1            1           72d
+</code></pre>
+<p>inference pool 和 inference model 如下：</p>
+<pre><code class="language-bash">root@worker-1:~# kubectl  get inferencemodels.inference.networking.x-k8s.io
+NAME                                      MODEL NAME             INFERENCE POOL                           CRITICALITY   AGE
+small-llm-pd-single-gpu-inference-model   8b_instruction_tuned   small-llm-pd-single-gpu-inference-pool   Critical      72d
+root@worker-1:~# kubectl  get inferencepools.inference.networking.x-k8s.io
+NAME                                     AGE
+small-llm-pd-single-gpu-inference-pool   72d
+root@worker-1:~#
+</code></pre>
+<p>httprouter：</p>
+<pre><code>root@worker-1:~# kubectl  get httproute -o yaml
+apiVersion: v1
+items:
+- apiVersion: gateway.networking.k8s.io/v1
+  kind: HTTPRoute
+  metadata:
+    creationTimestamp: &quot;2025-12-16T07:22:09Z&quot;
+    generation: 1
+    labels:
+      app.kubernetes.io/component: llminferenceservice-router
+      app.kubernetes.io/name: small-llm-pd-single-gpu
+      app.kubernetes.io/part-of: llminferenceservice
+    name: small-llm-pd-single-gpu-kserve-route
+    namespace: default
+    ownerReferences:
+    - apiVersion: serving.kserve.io/v1alpha1
+      blockOwnerDeletion: true
+      controller: true
+      kind: LLMInferenceService
+      name: small-llm-pd-single-gpu
+      uid: 81661342-6dcd-441e-a548-37fa43fd0257
+    resourceVersion: &quot;94566617&quot;
+    uid: fa36b62d-81ae-4793-a47c-a24369121c7d
+  spec:
+    parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: kserve-ingress-gateway
+      namespace: kserve
+    rules:
+    - backendRefs:
+      - group: inference.networking.x-k8s.io
+        kind: InferencePool
+        name: small-llm-pd-single-gpu-inference-pool
+        port: 8000
+        weight: 1
+      filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            replacePrefixMatch: /
+            type: ReplacePrefixMatch
+      matches:
+      - path:
+          type: PathPrefix
+          value: /default/small-llm-pd-single-gpu
+      timeouts:
+        backendRequest: 0s
+        request: 0s
+</code></pre>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
