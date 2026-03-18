@@ -4,8 +4,8 @@
 
 ## 内容列表
 
-- [kserve介绍和概览](./1%20kserve%20introduction.md)
-- [kserve controller 工作流](./2%20kserve%20controller%20workflow.md)
-- [http request请求过程](./3%20http%20request%20process.md)
-- [epp 加载过程](./4%20epp%20loading%20step.md)
-- [sidecar处理过程](./5%20sidecar%20process.md)
+- [kserve介绍和概览](1-kserve-introduction.md)
+- [kserve controller 工作流](2-kserve-controller-workflow.md)
+- [http request请求过程](3-http-request-process.md)
+- [epp 加载过程](4-epp-loading-step.md)
+- [sidecar处理过程](5-sidecar-process.md)
