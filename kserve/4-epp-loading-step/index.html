@@ -19,7 +19,7 @@
     
     
       
-        <title>EPP loading and picking - wchy1001's blogs</title>
+        <title>EPP 加载过程 - wchy1001's blogs</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              EPP loading and picking
+              EPP 加载过程
             
           </span>
         </div>
@@ -256,23 +256,14 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#epp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        EPP 加载过程
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#kserve" class="md-nav__link">
@@ -584,9 +575,7 @@
 
 
 
-  <h1>EPP loading and picking</h1>
-
-<h2 id="epp">EPP 加载过程</h2>
+<h1 id="epp">EPP 加载过程</h1>
 <p>EPP这里指的是scheduler， 要介绍kserve 生成的EPP 配置文件，以及EPP如何加载这些配置文件的。当请求进入到epp之后，epp是如何根据配置的插件来挑选最终的pod的呢？</p>
 <h2 id="kserve">Kserve 默认的配置文件</h2>
 <p>kserver生成的epp 配置文件如下</p>
@@ -1094,9 +1083,6 @@ request.Headers[common.PrefillPodHeader] = prefillHostPort // in the form of &lt
 
 
 
-
-  
-  
 
 
 

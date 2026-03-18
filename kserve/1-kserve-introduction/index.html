@@ -19,7 +19,7 @@
     
     
       
-        <title>kserve 介绍 - wchy1001's blogs</title>
+        <title>高性能推理框架-Kserve 介绍 - wchy1001's blogs</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              kserve 介绍
+              高性能推理框架-Kserve 介绍
             
           </span>
         </div>
@@ -256,23 +256,14 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#-kserve" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        高性能推理框架-Kserve 介绍
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#llm-d" class="md-nav__link">
@@ -313,9 +304,7 @@
 
 
 
-  <h1>kserve 介绍</h1>
-
-<h2 id="-kserve">高性能推理框架-Kserve 介绍</h2>
+<h1 id="-kserve">高性能推理框架-Kserve 介绍</h1>
 <p>Kserve是一个高性能的AI推理框架，看起来是对论文mooncake的工程实践。在新的版本中（2025年下半年开始），Kserve 开始支持 LLMInferenceService CR，相对以往的InferenceService 添加了对生成式模型的高级调度功能，其中包括：PD分离，智能路由等高级功能，因此本文主要介绍的是LLMISvc的资源工作原理，在查看本文之前，去阅读一下<a href="https://kserve.github.io/website/docs/model-serving/generative-inference/llmisvc/llmisvc-overview">kserve</a>的官方网站将非常有帮助。</p>
 <p>Kserve严重依赖LLM-D这个项目，LLM-D这个项目完成了核心的scheduler，路由等功能，参考官网说明</p>
 <h2 id="llm-d">LLM-D 概览</h2>
@@ -354,9 +343,6 @@ KServe's generative inference leverages llm-d components to scale and schedule t
 
 
 
-
-  
-  
 
 
 
